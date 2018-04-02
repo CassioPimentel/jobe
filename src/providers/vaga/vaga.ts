@@ -12,5 +12,9 @@ export class VagaProvider {
   getVagas(){
     return this.http.get('https://apinodeempregos.herokuapp.com/vagas');
   }
+  
+  getVaga(id: string){
+    return this.http.get('https://apinodeempregos.herokuapp.com/vaga/' + id);
+  }
 
 }

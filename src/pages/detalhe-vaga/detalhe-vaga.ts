@@ -1,25 +1,38 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
-
-/**
- * Generated class for the DetalheVagaPage page.
- *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
- */
+import { VagaProvider } from './../../providers/vaga/vaga';
 
 @IonicPage()
 @Component({
   selector: 'page-detalhe-vaga',
   templateUrl: 'detalhe-vaga.html',
+  providers: [ VagaProvider ]
 })
 export class DetalheVagaPage {
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  _id : any;
+
+  constructor(public navCtrl: NavController, 
+              private vagaProvider: VagaProvider,
+              public navParams: NavParams){
+    this._id = navParams.get('id');           
+  }
+  
+  close(){
+    this.navCtrl.pop();
   }
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad DetalheVagaPage');
+    this.vagaProvider.getVaga(this._id).subscribe(
+          data=>{
+            const response = (data as any);
+            const objeto_retorno = JSON.parse(response._body);
+            console.log(objeto_retorno);
+            //this.lista_vagas = objeto_retorno;
+          }, error=>{
+            console.log("error");
+          }
+      )
   }
 
 }

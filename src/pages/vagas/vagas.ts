@@ -1,12 +1,14 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { VagaProvider } from './../../providers/vaga/vaga';
+import { ModalController } from 'ionic-angular';
+import { DetalheVagaPage } from "../detalhe-vaga/detalhe-vaga";
 
 @IonicPage()
 @Component({
   selector: 'page-vagas',
   templateUrl: 'vagas.html',
-   providers: [ VagaProvider ]
+  providers: [ VagaProvider ]
 })
 export class VagasPage {
   
@@ -14,7 +16,8 @@ export class VagasPage {
 
   constructor(public navCtrl: NavController, 
               public navParams: NavParams,
-              private vagaProvider: VagaProvider) {
+              private vagaProvider: VagaProvider,
+              public modalCtrl: ModalController) {
   }
 
   ionViewDidLoad() {
@@ -30,6 +33,11 @@ export class VagasPage {
             console.log("error");
           }
       )
+  }
+  
+  detalhe(id: string){
+    let modal = this.modalCtrl.create(DetalheVagaPage, {id: id});
+    modal.present();
   }
 
 }

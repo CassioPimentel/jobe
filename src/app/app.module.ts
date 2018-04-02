@@ -9,11 +9,13 @@ import { ContactPage } from '../pages/contact/contact';
 import { HomePage } from '../pages/home/home';
 import { TabsPage } from '../pages/tabs/tabs';
 import { VagasPage } from '../pages/vagas/vagas';
+import { DetalheVagaPage } from '../pages/detalhe-vaga/detalhe-vaga';
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { VagaProvider } from '../providers/vaga/vaga';
 import { GooglePlaceProvider } from '../providers/google-place/google-place';
+import { CidadeProvider } from '../providers/cidade/cidade';
 
 @NgModule({
   declarations: [
@@ -22,7 +24,8 @@ import { GooglePlaceProvider } from '../providers/google-place/google-place';
     ContactPage,
     HomePage,
     TabsPage,
-    VagasPage
+    VagasPage,
+    DetalheVagaPage
   ],
   imports: [
     BrowserModule,
@@ -36,14 +39,16 @@ import { GooglePlaceProvider } from '../providers/google-place/google-place';
     ContactPage,
     HomePage,
     TabsPage,
-    VagasPage
+    VagasPage,
+    DetalheVagaPage
   ],
   providers: [
     StatusBar,
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     VagaProvider,
-    GooglePlaceProvider
+    GooglePlaceProvider,
+    CidadeProvider
   ]
 })
 export class AppModule {}

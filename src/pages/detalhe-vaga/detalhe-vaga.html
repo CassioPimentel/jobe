@@ -8,7 +8,7 @@
     </ion-buttons>
 
     <ion-title>Detalhe da vaga</ion-title>
-
+    
     <ion-buttons end>
       <button ion-button icon-only>
         <ion-icon name="share"></ion-icon>
@@ -25,9 +25,9 @@
   <ion-card>
   
     <ion-card-header text-center>
-      <p> Auxiliar de Vendas </p>
-      <p> Acqua Soft </p>
-      <p> Goiânia - GO </p>
+      <p> {{ vaga?.titulo }} </p>
+      <p> {{ vaga?.empresa != '' ? vaga?.empresa : 'Não especificado' }} </p>
+      <p> {{ vaga?.cidade }} - {{ vaga?.estado }} </p>
       <p> Há 1 sem </p>
     </ion-card-header>
     
@@ -38,7 +38,7 @@
   
     <ion-card-content>
       <h2 style="font-weight: bold;"> Descrição: </h2>
-      <p> com experiencia </p>
+      <p> {{ vaga?.descricao }} </p>
     </ion-card-content>
   
   </ion-card>

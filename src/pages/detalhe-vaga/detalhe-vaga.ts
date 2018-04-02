@@ -11,6 +11,7 @@ import { VagaProvider } from './../../providers/vaga/vaga';
 export class DetalheVagaPage {
 
   _id : any;
+  vaga : any;
 
   constructor(public navCtrl: NavController, 
               private vagaProvider: VagaProvider,
@@ -28,7 +29,7 @@ export class DetalheVagaPage {
             const response = (data as any);
             const objeto_retorno = JSON.parse(response._body);
             console.log(objeto_retorno);
-            //this.lista_vagas = objeto_retorno;
+            this.vaga = objeto_retorno;
           }, error=>{
             console.log("error");
           }

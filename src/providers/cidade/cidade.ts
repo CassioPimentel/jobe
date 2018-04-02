@@ -1,17 +1,16 @@
-import { HttpClient } from '@angular/common/http';
+import { Http } from '@angular/http';
 import { Injectable } from '@angular/core';
 
-/*
-  Generated class for the CidadeProvider provider.
-
-  See https://angular.io/guide/dependency-injection for more info on providers
-  and Angular DI.
-*/
 @Injectable()
 export class CidadeProvider {
 
-  constructor(public http: HttpClient) {
+  constructor(private http: Http) {
     console.log('Hello CidadeProvider Provider');
+  }
+  
+    
+  getCidade(city: string){
+    return this.http.get('https://maps.googleapis.com/maps/api/place/autocomplete/json?input=' + city + '&types=(cities)&language=pt_BR&key=AIzaSyAzGRlCLdl52GRUk3snkZBxxNxoDdnd0wQ');
   }
 
 }

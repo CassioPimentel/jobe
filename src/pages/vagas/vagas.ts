@@ -2,7 +2,8 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { VagaProvider } from './../../providers/vaga/vaga';
 import { ModalController } from 'ionic-angular';
-import { DetalheVagaPage } from "../detalhe-vaga/detalhe-vaga";
+import { DetalheVagaPage } from '../detalhe-vaga/detalhe-vaga';
+import { FiltroPage } from '../filtro/filtro';
 
 @IonicPage()
 @Component({
@@ -37,6 +38,11 @@ export class VagasPage {
   
   detalhe(id: string){
     let modal = this.modalCtrl.create(DetalheVagaPage, {id: id});
+    modal.present();
+  }
+  
+  filtro(){
+    let modal = this.modalCtrl.create(FiltroPage);
     modal.present();
   }
 

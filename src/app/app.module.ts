@@ -10,11 +10,13 @@ import { HomePage } from '../pages/home/home';
 import { TabsPage } from '../pages/tabs/tabs';
 import { VagasPage } from '../pages/vagas/vagas';
 import { DetalheVagaPage } from '../pages/detalhe-vaga/detalhe-vaga';
+import { FiltroPage } from '../pages/filtro/filtro';
+import { BuscaPage } from '../pages/busca/busca';
+import { PesquisaCidadePage } from '../pages/pesquisa-cidade/pesquisa-cidade';
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { VagaProvider } from '../providers/vaga/vaga';
-import { GooglePlaceProvider } from '../providers/google-place/google-place';
 import { CidadeProvider } from '../providers/cidade/cidade';
 
 @NgModule({
@@ -25,7 +27,10 @@ import { CidadeProvider } from '../providers/cidade/cidade';
     HomePage,
     TabsPage,
     VagasPage,
-    DetalheVagaPage
+    DetalheVagaPage,
+    FiltroPage,
+    BuscaPage,
+    PesquisaCidadePage
   ],
   imports: [
     BrowserModule,
@@ -40,14 +45,16 @@ import { CidadeProvider } from '../providers/cidade/cidade';
     HomePage,
     TabsPage,
     VagasPage,
-    DetalheVagaPage
+    DetalheVagaPage,
+    FiltroPage,
+    BuscaPage,
+    PesquisaCidadePage
   ],
   providers: [
     StatusBar,
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     VagaProvider,
-    GooglePlaceProvider,
     CidadeProvider
   ]
 })

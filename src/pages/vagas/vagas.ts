@@ -9,6 +9,8 @@ import { VagaProvider } from './../../providers/vaga/vaga';
    providers: [ VagaProvider ]
 })
 export class VagasPage {
+  
+  public lista_vagas = new Array<any>();
 
   constructor(public navCtrl: NavController, 
               public navParams: NavParams,
@@ -23,6 +25,7 @@ export class VagasPage {
             const response = (data as any);
             const objeto_retorno = JSON.parse(response._body);
             console.log(objeto_retorno);
+            this.lista_vagas = objeto_retorno;
           }, error=>{
             console.log("error");
           }

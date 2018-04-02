@@ -1,10 +1,11 @@
-import { HttpClient } from '@angular/common/http';
+//import { HttpClient } from '@angular/common/http';
+import { Http } from '@angular/http';
 import { Injectable } from '@angular/core';
 
 @Injectable()
 export class VagaProvider {
 
-  constructor(public http: HttpClient) {
+  constructor(private http: Http) {
     console.log('Hello VagaProvider Provider');
   }
   

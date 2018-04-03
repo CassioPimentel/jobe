@@ -13,16 +13,16 @@
 
     <ion-item>        
         <ion-label> <ion-icon name="search"></ion-icon> </ion-label>
-        <ion-input clearInput type="text" placeholder="Profissão"></ion-input>
+        <ion-input clearInput type="text" [(ngModel)]="titulo" placeholder="Profissão"></ion-input>
     </ion-item>
     
     <ion-item>        
         <ion-label> <ion-icon name="pin"></ion-icon> </ion-label>
-        <ion-input clearInput type="text" placeholder="Cidade" (click)='getCidade()'></ion-input>
+        <ion-input clearInput type="text" [(ngModel)]="cidade" placeholder="Cidade" (click)='getCidade()'></ion-input>
     </ion-item>
     
     <ion-item>
-        <button ion-button full>Buscar</button>
+        <button ion-button full (click)='buscaVagas(titulo, cidade)'>Buscar</button>
     </ion-item>
   
   </ion-card>

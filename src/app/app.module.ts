@@ -13,6 +13,7 @@ import { DetalheVagaPage } from '../pages/detalhe-vaga/detalhe-vaga';
 import { FiltroPage } from '../pages/filtro/filtro';
 import { BuscaPage } from '../pages/busca/busca';
 import { PesquisaCidadePage } from '../pages/pesquisa-cidade/pesquisa-cidade';
+import { FavoritosPage } from '../pages/favoritos/favoritos';
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
@@ -30,7 +31,8 @@ import { CidadeProvider } from '../providers/cidade/cidade';
     DetalheVagaPage,
     FiltroPage,
     BuscaPage,
-    PesquisaCidadePage
+    PesquisaCidadePage,
+    FavoritosPage
   ],
   imports: [
     BrowserModule,
@@ -48,7 +50,8 @@ import { CidadeProvider } from '../providers/cidade/cidade';
     DetalheVagaPage,
     FiltroPage,
     BuscaPage,
-    PesquisaCidadePage
+    PesquisaCidadePage,
+    FavoritosPage
   ],
   providers: [
     StatusBar,

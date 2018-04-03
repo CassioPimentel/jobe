@@ -1,12 +1,13 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { VagaProvider } from './../../providers/vaga/vaga';
+import { InAppBrowser } from '@ionic-native/in-app-browser';
 
 @IonicPage()
 @Component({
   selector: 'page-detalhe-vaga',
   templateUrl: 'detalhe-vaga.html',
-  providers: [ VagaProvider ]
+  providers: [ VagaProvider, InAppBrowser ]
 })
 export class DetalheVagaPage {
 
@@ -15,7 +16,8 @@ export class DetalheVagaPage {
 
   constructor(public navCtrl: NavController, 
               private vagaProvider: VagaProvider,
-              public navParams: NavParams){
+              public navParams: NavParams,
+              private iab: InAppBrowser){
     this._id = navParams.get('id');           
   }
   
@@ -33,7 +35,11 @@ export class DetalheVagaPage {
           }, error=>{
             console.log("error");
           }
-      )
+    )
+  }
+  
+  irParaVaga(link: string){
+    const browser = this.iab.create(link);
   }
 
 }

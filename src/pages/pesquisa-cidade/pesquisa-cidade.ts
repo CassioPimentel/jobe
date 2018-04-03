@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { CidadeProvider } from './../../providers/cidade/cidade';
+import { BuscaPage } from '../busca/busca';
 
 @IonicPage()
 @Component({
@@ -35,6 +36,16 @@ export class PesquisaCidadePage {
             console.log("error");
           }
       )
+  }
+  
+  close(){
+    this.navCtrl.pop();
+  }
+  
+  SelectCidade(cidade: string){
+    this.navCtrl.push(BuscaPage, {
+      cidade: cidade
+    });
   }
 
 }

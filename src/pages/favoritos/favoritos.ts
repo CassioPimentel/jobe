@@ -15,15 +15,15 @@ export class FavoritosPage {
   constructor(public navCtrl: NavController, 
               public navParams: NavParams,
               private favoritoProvider: FavoritoProvider) {
+    this.atualizarFavoritos()              
   }
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad FavoritosPage');
-
     this.atualizarFavoritos()
   }
-  
+
   retirarFavorito(id: string){
+    console.log(id);
     this.favoritoProvider.remove(id);
     this.atualizarFavoritos()
   }

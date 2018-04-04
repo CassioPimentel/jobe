@@ -13,12 +13,13 @@ export class FavoritoProvider {
   }
 
   save(item: any) {
-    if(this.get(item._id) == null){
-      this.insert(item);
-    }else{
-      this.remove(item._id);
-    }
-    
+    this.get(item._id).then(data => {
+      if(data == null){
+        this.insert(item);
+      }else{
+        this.remove(item._id);
+      }
+    });
   }
 
   remove(id: string){

@@ -5,13 +5,12 @@ import { FavoritoProvider } from './../../providers/favorito/favorito';
 import { ModalController } from 'ionic-angular';
 import { DetalheVagaPage } from '../detalhe-vaga/detalhe-vaga';
 import { FiltroPage } from '../filtro/filtro';
-import { NativeStorage } from '@ionic-native/native-storage';
 
 @IonicPage()
 @Component({
   selector: 'page-vagas',
   templateUrl: 'vagas.html',
-  providers: [ VagaProvider, NativeStorage, FavoritoProvider ]
+  providers: [ VagaProvider, FavoritoProvider ]
 })
 export class VagasPage {
   
@@ -23,8 +22,7 @@ export class VagasPage {
               public navParams: NavParams,
               private vagaProvider: VagaProvider,
               private favoritoProvider: FavoritoProvider,
-              public modalCtrl: ModalController,
-              private nativeStorage: NativeStorage
+              public modalCtrl: ModalController
               ) {
                 
     this.titulo = this.navParams.get('titulo');
@@ -71,14 +69,7 @@ export class VagasPage {
   }
  
   salvarFavorito(item: any){
-    console.log(item);
-    this.favoritoProvider.save(item)
-      .then(
-        () => console.log('Stored item!'),
-        error => console.error('Error storing item', error)
-      );
-      
-      //this.favoritoProvider.getAll();
+    this.favoritoProvider.save(item);
   }
 
 }

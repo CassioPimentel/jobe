@@ -11,7 +11,7 @@
 
 <ion-content class="cards-bg social-cards">
   
-  <ion-card *ngFor="let item of lista_vagas" >
+  <ion-card *ngFor="let item of favoritos" >
     
   <ion-item (click)='detalhe(item._id)'>
     <h2>{{ item.titulo }}</h2>
@@ -21,9 +21,9 @@
 
   <ion-row>
     <ion-col >
-      <button ion-button icon-left clear small>
+      <button ion-button icon-left clear small (click)='retirarFavorito(item._id)'>
         <ion-icon name="heart"></ion-icon>
-        <div>Salvar</div>
+        <div>Salva</div>
       </button>
     </ion-col>
     <ion-col >

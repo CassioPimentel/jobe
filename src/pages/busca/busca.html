@@ -18,7 +18,7 @@
     
     <ion-item>        
         <ion-label> <ion-icon name="pin"></ion-icon> </ion-label>
-        <ion-input clearInput type="text" [(ngModel)]="cidade" placeholder="Cidade" (click)='getCidade()'></ion-input>
+        <ion-input clearInput type="text" [(ngModel)]="cidade" placeholder="Cidade" (ionBlur)='getCidade()'></ion-input>
     </ion-item>
     
     <ion-item>

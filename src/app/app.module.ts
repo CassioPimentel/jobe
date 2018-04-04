@@ -3,6 +3,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { IonicApp, IonicModule, IonicErrorHandler } from 'ionic-angular';
 import { MyApp } from './app.component';
 import { HttpModule } from '@angular/http';
+import { IonicStorageModule } from '@ionic/storage';
 
 import { AboutPage } from '../pages/about/about';
 import { ContactPage } from '../pages/contact/contact';
@@ -19,6 +20,7 @@ import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { VagaProvider } from '../providers/vaga/vaga';
 import { CidadeProvider } from '../providers/cidade/cidade';
+import { FavoritoProvider } from '../providers/favorito/favorito';
 
 @NgModule({
   declarations: [
@@ -37,6 +39,7 @@ import { CidadeProvider } from '../providers/cidade/cidade';
   imports: [
     BrowserModule,
     IonicModule.forRoot(MyApp),
+    IonicStorageModule.forRoot(),
     HttpModule
   ],
   bootstrap: [IonicApp],
@@ -58,7 +61,8 @@ import { CidadeProvider } from '../providers/cidade/cidade';
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     VagaProvider,
-    CidadeProvider
+    CidadeProvider,
+    FavoritoProvider
   ]
 })
 export class AppModule {}

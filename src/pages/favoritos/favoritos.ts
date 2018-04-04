@@ -17,7 +17,7 @@ export class FavoritosPage {
               private favoritoProvider: FavoritoProvider) {
     this.atualizarFavoritos()              
   }
-
+  
   ionViewDidLoad() {
     this.atualizarFavoritos()
   }

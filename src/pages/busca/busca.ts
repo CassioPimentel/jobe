@@ -18,7 +18,7 @@ export class BuscaPage {
               public navParams: NavParams,
               public modalCtrl: ModalController){
                 
-    this.cidade = navParams.get('lista');   
+    this.cidade = navParams.get('cidade');   
   }
   
   ionViewDidLoad() {
@@ -26,8 +26,9 @@ export class BuscaPage {
   }
   
   getCidade(){
-    let modal = this.modalCtrl.create(PesquisaCidadePage);
-    modal.present();
+    //let modal = this.modalCtrl.create(PesquisaCidadePage);
+    this.navCtrl.push(PesquisaCidadePage);
+    //modal.present();
   }
   
   buscaVagas(titulo: string, cidade: string){

@@ -32,8 +32,8 @@
 
   <ion-row>
     <ion-col >
-      <button ion-button icon-left clear small>
-        <ion-icon name="heart"></ion-icon>
+      <button ion-button icon-left clear small (click)='salvarFavorito(item)'>
+        <ion-icon name="heart" [ngStyle]="{'color':green}"></ion-icon>
         <div>Salvar</div>
       </button>
     </ion-col>

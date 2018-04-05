@@ -21,4 +21,8 @@ export class VagaProvider {
     return this.http.get('https://apinodeempregos.herokuapp.com/busca/' + titulo + '/' + cidade);
   }
 
+  getNomeVaga(titulo: string){
+    return this.http.get('https://apidescricaovagas.herokuapp.com/nomeVaga/' + titulo);
+  }
+
 }

@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { ModalController } from 'ionic-angular';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { PesquisaCidadePage } from '../pesquisa-cidade/pesquisa-cidade';
+import { PesquisaVagaPage } from '../pesquisa-vaga/pesquisa-vaga';
 import { VagasPage } from '../vagas/vagas';
 
 @IonicPage()
@@ -13,12 +14,14 @@ export class BuscaPage {
 
   public lista_vagas = new Array<any>();
   public cidade : any;
+  public titulo : any;
 
   constructor(public navCtrl: NavController, 
               public navParams: NavParams,
               public modalCtrl: ModalController){
                 
-    this.cidade = navParams.get('cidade');   
+    this.cidade = navParams.get('cidade');  
+    this.titulo = navParams.get('titulo');    
   }
   
   ionViewDidLoad() {
@@ -26,9 +29,7 @@ export class BuscaPage {
   }
   
   getCidade(){
-    //let modal = this.modalCtrl.create(PesquisaCidadePage);
     this.navCtrl.push(PesquisaCidadePage);
-    //modal.present();
   }
   
   buscaVagas(titulo: string, cidade: string){
@@ -36,6 +37,10 @@ export class BuscaPage {
      console.log(cidade);
      
      this.navCtrl.push(VagasPage, { titulo : titulo, cidade : cidade } );
+  }
+
+  getVaga(){
+    this.navCtrl.push(PesquisaVagaPage);
   }
 
 }

@@ -12,12 +12,12 @@ export class FavoritosPage {
 
   favoritos: any;
 
-  constructor(public navCtrl: NavController, 
+  constructor(public navCtrl: NavController,
               public navParams: NavParams,
               private favoritoProvider: FavoritoProvider) {
     this.atualizarFavoritos()              
   }
-  
+
   ionViewDidLoad() {
     this.atualizarFavoritos()
   }

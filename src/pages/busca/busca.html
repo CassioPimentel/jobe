@@ -13,7 +13,7 @@
 
     <ion-item>        
         <ion-label> <ion-icon name="search"></ion-icon> </ion-label>
-        <ion-input clearInput type="text" [(ngModel)]="titulo" placeholder="Profissão"></ion-input>
+        <ion-input clearInput type="text" [(ngModel)]="titulo" placeholder="Profissão" (ionBlur)='getVaga()'></ion-input>
     </ion-item>
     
     <ion-item>        

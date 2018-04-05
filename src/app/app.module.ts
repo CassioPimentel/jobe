@@ -21,6 +21,7 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 import { VagaProvider } from '../providers/vaga/vaga';
 import { CidadeProvider } from '../providers/cidade/cidade';
 import { FavoritoProvider } from '../providers/favorito/favorito';
+import { PesquisaVagaPage } from '../pages/pesquisa-vaga/pesquisa-vaga';
 
 @NgModule({
   declarations: [
@@ -34,6 +35,7 @@ import { FavoritoProvider } from '../providers/favorito/favorito';
     FiltroPage,
     BuscaPage,
     PesquisaCidadePage,
+    PesquisaVagaPage,
     FavoritosPage
   ],
   imports: [
@@ -54,6 +56,7 @@ import { FavoritoProvider } from '../providers/favorito/favorito';
     FiltroPage,
     BuscaPage,
     PesquisaCidadePage,
+    PesquisaVagaPage,
     FavoritosPage
   ],
   providers: [

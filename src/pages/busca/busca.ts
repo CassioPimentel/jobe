@@ -20,8 +20,17 @@ export class BuscaPage {
               public navParams: NavParams,
               public modalCtrl: ModalController){
                 
-    this.cidade = navParams.get('cidade');  
-    this.titulo = navParams.get('titulo');    
+    let cidade = navParams.get('cidade');  
+    let titulo = navParams.get('titulo');  
+
+    if(cidade != undefined){
+      this.cidade = cidade;  
+    }
+    
+    if(titulo != undefined){
+      this.titulo = titulo;
+    }
+
   }
   
   ionViewDidLoad() {

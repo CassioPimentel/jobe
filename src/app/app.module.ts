@@ -4,6 +4,7 @@ import { IonicApp, IonicModule, IonicErrorHandler } from 'ionic-angular';
 import { MyApp } from './app.component';
 import { HttpModule } from '@angular/http';
 import { IonicStorageModule } from '@ionic/storage';
+import { SocialSharing } from '@ionic-native/social-sharing';
 
 import { AboutPage } from '../pages/about/about';
 import { ContactPage } from '../pages/contact/contact';
@@ -15,6 +16,7 @@ import { FiltroPage } from '../pages/filtro/filtro';
 import { BuscaPage } from '../pages/busca/busca';
 import { PesquisaCidadePage } from '../pages/pesquisa-cidade/pesquisa-cidade';
 import { FavoritosPage } from '../pages/favoritos/favoritos';
+import { PaginaCompartilharPage } from '../pages/pagina-compartilhar/pagina-compartilhar';
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
@@ -36,7 +38,8 @@ import { PesquisaVagaPage } from '../pages/pesquisa-vaga/pesquisa-vaga';
     BuscaPage,
     PesquisaCidadePage,
     PesquisaVagaPage,
-    FavoritosPage
+    FavoritosPage,
+    PaginaCompartilharPage
   ],
   imports: [
     BrowserModule,
@@ -57,7 +60,8 @@ import { PesquisaVagaPage } from '../pages/pesquisa-vaga/pesquisa-vaga';
     BuscaPage,
     PesquisaCidadePage,
     PesquisaVagaPage,
-    FavoritosPage
+    FavoritosPage,
+    PaginaCompartilharPage
   ],
   providers: [
     StatusBar,
@@ -65,7 +69,8 @@ import { PesquisaVagaPage } from '../pages/pesquisa-vaga/pesquisa-vaga';
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     VagaProvider,
     CidadeProvider,
-    FavoritoProvider
+    FavoritoProvider,
+    SocialSharing
   ]
 })
 export class AppModule {}

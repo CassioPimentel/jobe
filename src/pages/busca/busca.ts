@@ -22,14 +22,19 @@ export class BuscaPage {
                 
     let cidade = navParams.get('cidade');  
     let titulo = navParams.get('titulo');  
+                
+    console.log(cidade);
+    console.log(titulo);
 
-    if(cidade != undefined){
-      this.cidade = cidade;  
-    }
+    //if(cidade != undefined){
+      this.cidade = cidade;
+      this.titulo = titulo;  
+    //}
     
-    if(titulo != undefined){
-      this.titulo = titulo;
-    }
+    //if(titulo != undefined){
+    //  this.titulo = titulo;
+    //  this.cidade = this.cidade;
+    //}
 
   }
   
@@ -38,18 +43,20 @@ export class BuscaPage {
   }
   
   getCidade(){
-    this.navCtrl.push(PesquisaCidadePage);
+    this.navCtrl.push(PesquisaCidadePage, { titulo: this.titulo });
   }
   
   buscaVagas(titulo: string, cidade: string){
      console.log(titulo);
      console.log(cidade);
+
+     cidade = cidade.substring(0, cidade.indexOf(','));
      
      this.navCtrl.push(VagasPage, { titulo : titulo, cidade : cidade } );
   }
 
   getVaga(){
-    this.navCtrl.push(PesquisaVagaPage);
+    this.navCtrl.push(PesquisaVagaPage, { cidade: this.cidade });
   }
 
 }

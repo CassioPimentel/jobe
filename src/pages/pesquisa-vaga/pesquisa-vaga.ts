@@ -12,10 +12,12 @@ import { BuscaPage } from '../busca/busca';
 export class PesquisaVagaPage {
 
   public lista_vagas = new Array<any>();
+  public cidade : any;
 
   constructor(public navCtrl: NavController, 
               public navParams: NavParams,
               private vagaProvider: VagaProvider) {
+    this.cidade = navParams.get('cidade');
   }
 
   ionViewDidLoad() {
@@ -44,7 +46,8 @@ export class PesquisaVagaPage {
   
   SelectVaga(titulo: string){
     this.navCtrl.push(BuscaPage, {
-      titulo: titulo
+      titulo: titulo,
+      cidade: this.cidade
     });
   }
 

@@ -5,6 +5,7 @@ import { FavoritoProvider } from './../../providers/favorito/favorito';
 import { ModalController } from 'ionic-angular';
 import { DetalheVagaPage } from '../detalhe-vaga/detalhe-vaga';
 import { FiltroPage } from '../filtro/filtro';
+import { PaginaCompartilharPage } from '../pagina-compartilhar/pagina-compartilhar';
 
 @IonicPage()
 @Component({
@@ -65,6 +66,11 @@ export class VagasPage {
   
   filtro(){
     let modal = this.modalCtrl.create(FiltroPage);
+    modal.present();
+  }
+
+  PaginaCompartilhar(){
+    let modal = this.modalCtrl.create(PaginaCompartilharPage);
     modal.present();
   }
  

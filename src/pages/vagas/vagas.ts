@@ -6,6 +6,7 @@ import { ModalController } from 'ionic-angular';
 import { DetalheVagaPage } from '../detalhe-vaga/detalhe-vaga';
 import { FiltroPage } from '../filtro/filtro';
 import { PaginaCompartilharPage } from '../pagina-compartilhar/pagina-compartilhar';
+import { reorderArray } from 'ionic-angular';
 
 @IonicPage()
 @Component({
@@ -30,6 +31,19 @@ export class VagasPage {
     this.cidade = this.navParams.get('cidade');
   }
 
+  public sortByKey(array, key) {
+    return array.sort(function (a, b) {
+        var x = a[key]; var y = b[key];
+        return ((x < y) ? -1 : ((x > y) ? 0 : 1));
+    });
+  }
+
+  reorderItems(indexes) {
+    let element = this.lista_vagas[indexes.from];
+    this.lista_vagas.splice(indexes.from, 1);
+    this.lista_vagas.splice(indexes.to, 0, element);
+  }
+
   ionViewDidLoad() {
     console.log(this.titulo);
     console.log(this.cidade);
@@ -39,6 +53,7 @@ export class VagasPage {
             const response = (data as any);
             const objeto_retorno = JSON.parse(response._body);
             this.lista_vagas = objeto_retorno;
+     
             console.log(objeto_retorno);
           }, error=>{
             console.log("error");

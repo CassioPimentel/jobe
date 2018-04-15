@@ -22,6 +22,10 @@
 
 <ion-content class="cards-bg social-cards">
   
+  <ion-card *ngIf="lista_vagas.length == 0">
+    <h2>Nenhuma vaga encontrada</h2>
+  </ion-card>
+
   <ion-card *ngFor="let item of lista_vagas" >
     
   <ion-item (click)='detalhe(item._id)'>

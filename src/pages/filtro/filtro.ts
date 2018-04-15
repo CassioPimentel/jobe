@@ -19,4 +19,8 @@ export class FiltroPage {
     this.navCtrl.pop();
   }
 
+  filtrar(ordenacao:any, experiencia:any){
+    
+  }
+
 }

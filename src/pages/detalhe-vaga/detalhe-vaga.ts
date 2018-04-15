@@ -20,7 +20,7 @@ export class DetalheVagaPage {
               private vagaProvider: VagaProvider,
               private favoritoProvider: FavoritoProvider,
               public navParams: NavParams,
-              private sharing: SocialSharing
+              private sharing: SocialSharing,
               private iab: InAppBrowser){
     this._id = navParams.get('id');           
   }

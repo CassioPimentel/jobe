@@ -16,8 +16,10 @@ export class FavoritoProvider {
     this.get(item._id).then(data => {
       if(data == null){
         this.insert(item);
+        return 1;
       }else{
         this.remove(item._id);
+        return 0;
       }
     });
   }
@@ -27,6 +29,10 @@ export class FavoritoProvider {
   }
 
   get(key: string){
+    this.storage.get(key).then((val) => {
+      console.log('Your age is', val);
+    });
+    //console.log(this.storage.get(key));
     return this.storage.get(key);
   }
 

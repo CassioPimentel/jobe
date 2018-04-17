@@ -7,6 +7,7 @@ import { DetalheVagaPage } from '../detalhe-vaga/detalhe-vaga';
 import { FiltroPage } from '../filtro/filtro';
 import { PaginaCompartilharPage } from '../pagina-compartilhar/pagina-compartilhar';
 import { reorderArray } from 'ionic-angular';
+import { Vaga } from './vaga';
 
 @IonicPage()
 @Component({
@@ -19,6 +20,9 @@ export class VagasPage {
   public lista_vagas = new Array<any>();
   titulo: string;
   cidade: string;
+  salvo: any;
+  vaga: Vaga;
+  public vagas = new Array<Vaga>();
   
   constructor(public navCtrl: NavController, 
               public navParams: NavParams,
@@ -45,16 +49,43 @@ export class VagasPage {
   }
 
   ionViewDidLoad() {
-    console.log(this.titulo);
-    console.log(this.cidade);
     if(this.titulo != undefined && this.cidade != undefined){
       this.vagaProvider.buscaVagas(this.titulo, this.cidade).subscribe(
           data=>{
             const response = (data as any);
             const objeto_retorno = JSON.parse(response._body);
-            this.lista_vagas = objeto_retorno;
-     
-            console.log(objeto_retorno);
+
+            for(var item in objeto_retorno) {
+
+              //this.favoritoProvider.get(item["_id"]).then(data => {
+              //  if(data == null){
+              //    console.log('entrou data null');
+              //    this.vaga.salvo = 1;
+              //  }else{
+              //    this.vaga.salvo = 0;
+              //    console.log('entrou data null');
+              //  }
+              //});
+
+              this.vaga.userId = item["_id"];
+              this.vaga.titulo = item["titulo"];
+              this.vaga.setor = item["setor"];
+              this.vaga.salario = item["salario"];
+              this.vaga.link = String(item["link"]);
+              this.vaga.estado = item["estado"];
+              this.vaga.cidade = item["cidade"];
+              this.vaga.data = item["data"];
+              this.vaga.descricao = item["descricao"];
+              this.vaga.email = item["email"];
+              this.vaga.empresa = item["empresa"];
+              this.vaga.escolaridade = item["escolaridade"];
+
+              this.vagas.push(this.vaga);
+          }   
+
+          console.log(this.vagas);
+          this.lista_vagas = this.vagas;  
+
           }, error=>{
             console.log("error");
           }
@@ -64,8 +95,44 @@ export class VagasPage {
         data=>{
           const response = (data as any);
           const objeto_retorno = JSON.parse(response._body);
-          console.log(objeto_retorno);
           this.lista_vagas = objeto_retorno;
+
+          for(var item in objeto_retorno) {
+              console.log(objeto_retorno[item]["_id"]);
+              var vaga = new Vaga();
+
+              this.favoritoProvider.get(objeto_retorno[item]["_id"]).then(data => {
+                console.log(data);
+                if(data == null){
+                  //console.log('entrou data 1');
+                  vaga.salvo = 1;
+                }else{
+                  vaga.salvo = 0;
+                 // console.log('entrou data 2');
+                }
+              });
+
+              vaga.userId = objeto_retorno[item]["_id"];
+              vaga.titulo = objeto_retorno[item]["titulo"];
+              vaga.setor = objeto_retorno[item]["setor"];
+              vaga.salario = objeto_retorno[item]["salario"];
+              vaga.link = String(objeto_retorno[item]["link"]);
+              vaga.estado = objeto_retorno[item]["estado"];
+              vaga.cidade = objeto_retorno[item]["cidade"];
+              vaga.data = objeto_retorno[item]["data"];
+              vaga.descricao = objeto_retorno[item]["descricao"];
+              vaga.email = objeto_retorno[item]["email"];
+              vaga.empresa = objeto_retorno[item]["empresa"];
+              vaga.escolaridade = objeto_retorno[item]["escolaridade"];
+
+              this.vagas.push(vaga);
+          }   
+
+          this.favoritoProvider.getAll();
+
+          //console.log(this.vagas);
+          this.lista_vagas = this.vagas; 
+
         }, error=>{
           console.log("error");
         }
@@ -90,7 +157,7 @@ export class VagasPage {
   }
  
   salvarFavorito(item: any){
-    this.favoritoProvider.save(item);
+    this.salvo = this.favoritoProvider.save(item);
   }
 
 }

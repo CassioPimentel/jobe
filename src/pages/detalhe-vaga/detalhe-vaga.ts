@@ -34,8 +34,7 @@ export class DetalheVagaPage {
           data=>{
             const response = (data as any);
             const objeto_retorno = JSON.parse(response._body);
-            console.log(objeto_retorno);
-            this.vaga = objeto_retorno;2
+            this.vaga = objeto_retorno;
           }, error=>{
             console.log("error");
           }

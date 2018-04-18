@@ -36,16 +36,16 @@
 
   <ion-row>
     <ion-col >
-      <button ion-button icon-left clear small (click)='salvarFavorito(item)'>
-        <ion-icon name="heart"></ion-icon>
-        <div> {{ item.salvo != 0 ? 'Salvar' : 'Salvo' }} </div>
-      </button>
+      <button ion-button icon-left clear small (click)='CompartilharVaga(item)'>
+            <ion-icon name="share-alt"></ion-icon >
+            <div>Compartilhar</div>
+      </button>    
     </ion-col>
     <ion-col >
-      <button ion-button icon-left clear small>
-        <ion-icon name="share-alt"></ion-icon>
-        <div>Compartilhar</div>
-      </button>
+        <button ion-button icon-left clear small (click)='salvarFavorito(item)'>
+            <!-- <ion-icon name="heart"></ion-icon>
+             <div> {{ item.salvo != 0 ? 'Salvar' : 'Salvo' }} {{ item.salvo }} </div> -->
+        </button>
     </ion-col>
     <ion-col >
       <button ion-button icon-left clear small right>

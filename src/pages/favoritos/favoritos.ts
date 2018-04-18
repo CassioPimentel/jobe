@@ -19,6 +19,9 @@ export class FavoritosPage {
   }
 
   ionViewDidLoad() {
+  }
+
+  ionViewWillEnter(){
     this.atualizarFavoritos()
   }
 
@@ -29,6 +32,7 @@ export class FavoritosPage {
   }
 
   atualizarFavoritos(){
+    console.log('ENTRA ATUALIZA FAVORITOS');
     this.favoritos = this.favoritoProvider.getAll();
   }
 

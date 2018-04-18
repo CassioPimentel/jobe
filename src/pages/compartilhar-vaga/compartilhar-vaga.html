@@ -1,0 +1,35 @@
+<ion-header>
+
+    <ion-toolbar color="primary">
+        <ion-buttons left>
+          <button ion-button icon-only (click)='close()'>
+            <ion-icon name="arrow-back"></ion-icon>
+          </button>
+        </ion-buttons>
+    
+        <ion-title>Compartilhar</ion-title>
+    
+      </ion-toolbar>
+
+</ion-header>
+
+<ion-content>
+
+    <ion-content>
+        <ion-list>
+            <ion-item>
+              <ion-icon name="logo-facebook" item-start (click)='facebookShare()'></ion-icon>
+                Facebook
+              </ion-item>
+            <ion-item>
+              <ion-icon name="logo-whatsapp" item-start (click)='whatsappShare()'></ion-icon>
+                Whatsapp
+              </ion-item>
+            <ion-item>
+              <ion-icon name="logo-twitter" item-start (click)='twitterShare()'></ion-icon>
+                Twitter
+              </ion-item>
+        </ion-list>
+    </ion-content>
+
+</ion-content>

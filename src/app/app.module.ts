@@ -24,6 +24,7 @@ import { VagaProvider } from '../providers/vaga/vaga';
 import { CidadeProvider } from '../providers/cidade/cidade';
 import { FavoritoProvider } from '../providers/favorito/favorito';
 import { PesquisaVagaPage } from '../pages/pesquisa-vaga/pesquisa-vaga';
+import { CompartilharVagaPage } from '../pages/compartilhar-vaga/compartilhar-vaga';
 
 @NgModule({
   declarations: [
@@ -39,7 +40,8 @@ import { PesquisaVagaPage } from '../pages/pesquisa-vaga/pesquisa-vaga';
     PesquisaCidadePage,
     PesquisaVagaPage,
     FavoritosPage,
-    PaginaCompartilharPage
+    PaginaCompartilharPage,
+    CompartilharVagaPage
   ],
   imports: [
     BrowserModule,
@@ -61,7 +63,8 @@ import { PesquisaVagaPage } from '../pages/pesquisa-vaga/pesquisa-vaga';
     PesquisaCidadePage,
     PesquisaVagaPage,
     FavoritosPage,
-    PaginaCompartilharPage
+    PaginaCompartilharPage,
+    CompartilharVagaPage
   ],
   providers: [
     StatusBar,

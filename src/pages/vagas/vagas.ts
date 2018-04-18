@@ -8,6 +8,7 @@ import { FiltroPage } from '../filtro/filtro';
 import { PaginaCompartilharPage } from '../pagina-compartilhar/pagina-compartilhar';
 import { reorderArray } from 'ionic-angular';
 import { Vaga } from './vaga';
+import { CompartilharVagaPage } from '../compartilhar-vaga/compartilhar-vaga';
 
 @IonicPage()
 @Component({
@@ -49,12 +50,15 @@ export class VagasPage {
   }
 
   ionViewDidLoad() {
+    //var vagas = new Array<Vaga>();
     if(this.titulo != undefined && this.cidade != undefined){
       this.vagaProvider.buscaVagas(this.titulo, this.cidade).subscribe(
           data=>{
             const response = (data as any);
             const objeto_retorno = JSON.parse(response._body);
+            this.lista_vagas = objeto_retorno;
 
+            /*
             for(var item in objeto_retorno) {
 
               //this.favoritoProvider.get(item["_id"]).then(data => {
@@ -84,7 +88,7 @@ export class VagasPage {
           }   
 
           console.log(this.vagas);
-          this.lista_vagas = this.vagas;  
+          this.lista_vagas = this.vagas;  */
 
           }, error=>{
             console.log("error");
@@ -97,20 +101,17 @@ export class VagasPage {
           const objeto_retorno = JSON.parse(response._body);
           this.lista_vagas = objeto_retorno;
 
-          for(var item in objeto_retorno) {
-              console.log(objeto_retorno[item]["_id"]);
-              var vaga = new Vaga();
+          /*
 
-              this.favoritoProvider.get(objeto_retorno[item]["_id"]).then(data => {
-                console.log(data);
-                if(data == null){
-                  //console.log('entrou data 1');
-                  vaga.salvo = 1;
-                }else{
-                  vaga.salvo = 0;
-                 // console.log('entrou data 2');
-                }
-              });
+          for(var item in objeto_retorno) {
+              var vaga = new Vaga();
+              var salvo: any;
+
+              //this.favoritoProvider.getItem(objeto_retorno[item]["_id"]).then(function(result) {
+              // console.log(result);
+              //  salvo = result;
+              //});
+              vaga.salvo = salvo;
 
               vaga.userId = objeto_retorno[item]["_id"];
               vaga.titulo = objeto_retorno[item]["titulo"];
@@ -126,12 +127,15 @@ export class VagasPage {
               vaga.escolaridade = objeto_retorno[item]["escolaridade"];
 
               this.vagas.push(vaga);
-          }   
+            
+          }  
 
-          this.favoritoProvider.getAll();
+          var vagas2 = new Array<Vaga>();
+          
+  
 
-          //console.log(this.vagas);
-          this.lista_vagas = this.vagas; 
+          console.log(vagas2);
+          this.lista_vagas = vagas2; */
 
         }, error=>{
           console.log("error");
@@ -139,6 +143,17 @@ export class VagasPage {
       )
     }
 
+  }
+
+  getValue(id:any){
+    this.favoritoProvider.getItem(id).then(function(result) {
+                
+      if(result == null){
+        return 1;
+      }else{
+        return 0;
+      }
+    }); 
   }
   
   detalhe(id: string){
@@ -158,6 +173,11 @@ export class VagasPage {
  
   salvarFavorito(item: any){
     this.salvo = this.favoritoProvider.save(item);
+  }
+
+  CompartilharVaga(item: any){
+    let modal = this.modalCtrl.create(CompartilharVagaPage, { link: item.link });
+    modal.present();
   }
 
 }

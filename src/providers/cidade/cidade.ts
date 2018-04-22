@@ -1,4 +1,4 @@
-import { Http } from '@angular/http';
+import { Http, RequestOptions, Headers } from '@angular/http';
 import { Injectable } from '@angular/core';
 
 @Injectable()
@@ -9,7 +9,13 @@ export class CidadeProvider {
   }
   
   getCidade(city: string){
-    return this.http.get('https://maps.googleapis.com/maps/api/place/autocomplete/json?input=' + city + '&types=(cities)&language=pt_BR&key=AIzaSyAzGRlCLdl52GRUk3snkZBxxNxoDdnd0wQ');
+    let headers = new Headers();
+    headers.append('Content-Type', 'application/json');
+    headers.append('Access-Control-Allow-Origin', '*');
+    headers.append('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
+
+    let options = new RequestOptions({ headers: headers });
+    return this.http.get('https://maps.googleapis.com/maps/api/place/autocomplete/json?input=' + city + '&types=(cities)&language=pt_BR&key=AIzaSyAzGRlCLdl52GRUk3snkZBxxNxoDdnd0wQ', options);
   }
 
 }

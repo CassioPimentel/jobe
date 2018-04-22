@@ -25,6 +25,7 @@ import { CidadeProvider } from '../providers/cidade/cidade';
 import { FavoritoProvider } from '../providers/favorito/favorito';
 import { PesquisaVagaPage } from '../pages/pesquisa-vaga/pesquisa-vaga';
 import { CompartilharVagaPage } from '../pages/compartilhar-vaga/compartilhar-vaga';
+import { BuscaProvider } from '../providers/busca/busca';
 
 @NgModule({
   declarations: [
@@ -73,7 +74,8 @@ import { CompartilharVagaPage } from '../pages/compartilhar-vaga/compartilhar-va
     VagaProvider,
     CidadeProvider,
     FavoritoProvider,
-    SocialSharing
+    SocialSharing,
+    BuscaProvider
   ]
 })
 export class AppModule {}

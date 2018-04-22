@@ -1,5 +1,5 @@
 export class Vaga {
-    userId: number;
+    _id: number;
     titulo: String;
     descricao: String;
     link: String;

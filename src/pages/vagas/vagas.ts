@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { VagaProvider } from './../../providers/vaga/vaga';
+import { BuscaProvider } from './../../providers/busca/busca';
 import { FavoritoProvider } from './../../providers/favorito/favorito';
 import { ModalController } from 'ionic-angular';
 import { DetalheVagaPage } from '../detalhe-vaga/detalhe-vaga';
@@ -8,13 +9,15 @@ import { FiltroPage } from '../filtro/filtro';
 import { PaginaCompartilharPage } from '../pagina-compartilhar/pagina-compartilhar';
 import { reorderArray } from 'ionic-angular';
 import { Vaga } from './vaga';
+import { itemBusca } from './itemBusca';
 import { CompartilharVagaPage } from '../compartilhar-vaga/compartilhar-vaga';
+import { LoadingController } from 'ionic-angular';
 
 @IonicPage()
 @Component({
   selector: 'page-vagas',
   templateUrl: 'vagas.html',
-  providers: [ VagaProvider, FavoritoProvider ]
+  providers: [ VagaProvider, FavoritoProvider, BuscaProvider ]
 })
 export class VagasPage {
   
@@ -23,17 +26,34 @@ export class VagasPage {
   cidade: string;
   salvo: any;
   vaga: Vaga;
+  provider: any;
+  public loader;
   public vagas = new Array<Vaga>();
   
   constructor(public navCtrl: NavController, 
               public navParams: NavParams,
               private vagaProvider: VagaProvider,
+              private buscaProvider: BuscaProvider,
               private favoritoProvider: FavoritoProvider,
-              public modalCtrl: ModalController
+              public modalCtrl: ModalController,
+              public loadingCtrl: LoadingController
               ) {
                 
     this.titulo = this.navParams.get('titulo');
     this.cidade = this.navParams.get('cidade');
+    this.provider = this.vagaProvider;
+
+  }
+
+  abreCarregando() {
+  this.loader = this.loadingCtrl.create({
+      content: "Carregando",
+    });
+  this.loader.present();
+  }
+
+  fechaCarregando(){
+    this.loader.dismiss();
   }
 
   public sortByKey(array, key) {
@@ -49,100 +69,63 @@ export class VagasPage {
     this.lista_vagas.splice(indexes.to, 0, element);
   }
 
-  ionViewDidLoad() {
-    //var vagas = new Array<Vaga>();
+  ionViewWillEnter(){
+    this.abreCarregando();
     if(this.titulo != undefined && this.cidade != undefined){
-      this.vagaProvider.buscaVagas(this.titulo, this.cidade).subscribe(
+        this.vagaProvider.buscaVagas(this.titulo, this.cidade).subscribe(
+            data=>{
+              const response = (data as any);
+              const objeto_retorno = JSON.parse(response._body);
+
+              if(objeto_retorno.length > 0){
+                console.log(this.titulo);
+                console.log(this.cidade);
+
+                var item = {titulo: this.titulo, cidade: this.cidade};
+
+                this.buscaProvider.save(item);
+              }
+
+              this.lista_vagas = objeto_retorno;
+              this.fechaCarregando();
+
+            }, error=>{
+              this.fechaCarregando();
+            }
+        )  
+      }else{
+
+      var provider = this.provider;
+      var page = this;
+
+      var item = this.buscaProvider.get('ultimaVaga');
+
+      Promise.resolve(item.then()).then(function(value) {
+        provider.buscaVagas(value.titulo, value.cidade).subscribe(
           data=>{
             const response = (data as any);
             const objeto_retorno = JSON.parse(response._body);
-            this.lista_vagas = objeto_retorno;
-
-            /*
-            for(var item in objeto_retorno) {
-
-              //this.favoritoProvider.get(item["_id"]).then(data => {
-              //  if(data == null){
-              //    console.log('entrou data null');
-              //    this.vaga.salvo = 1;
-              //  }else{
-              //    this.vaga.salvo = 0;
-              //    console.log('entrou data null');
-              //  }
-              //});
-
-              this.vaga.userId = item["_id"];
-              this.vaga.titulo = item["titulo"];
-              this.vaga.setor = item["setor"];
-              this.vaga.salario = item["salario"];
-              this.vaga.link = String(item["link"]);
-              this.vaga.estado = item["estado"];
-              this.vaga.cidade = item["cidade"];
-              this.vaga.data = item["data"];
-              this.vaga.descricao = item["descricao"];
-              this.vaga.email = item["email"];
-              this.vaga.empresa = item["empresa"];
-              this.vaga.escolaridade = item["escolaridade"];
-
-              this.vagas.push(this.vaga);
-          }   
-
-          console.log(this.vagas);
-          this.lista_vagas = this.vagas;  */
-
+            page.addValue(objeto_retorno);
+            page.fechaCarregando();
+ 
           }, error=>{
-            console.log("error");
+            page.fechaCarregando();
           }
-      )  
-    }else{
-      this.vagaProvider.getVagas().subscribe(
-        data=>{
-          const response = (data as any);
-          const objeto_retorno = JSON.parse(response._body);
-          this.lista_vagas = objeto_retorno;
+        )
+      }, function(value) {
+        page.fechaCarregando();
+      });
+      
+    } 
 
-          /*
+  }
 
-          for(var item in objeto_retorno) {
-              var vaga = new Vaga();
-              var salvo: any;
+  ionViewDidLoad() {
+   
+  }
 
-              //this.favoritoProvider.getItem(objeto_retorno[item]["_id"]).then(function(result) {
-              // console.log(result);
-              //  salvo = result;
-              //});
-              vaga.salvo = salvo;
-
-              vaga.userId = objeto_retorno[item]["_id"];
-              vaga.titulo = objeto_retorno[item]["titulo"];
-              vaga.setor = objeto_retorno[item]["setor"];
-              vaga.salario = objeto_retorno[item]["salario"];
-              vaga.link = String(objeto_retorno[item]["link"]);
-              vaga.estado = objeto_retorno[item]["estado"];
-              vaga.cidade = objeto_retorno[item]["cidade"];
-              vaga.data = objeto_retorno[item]["data"];
-              vaga.descricao = objeto_retorno[item]["descricao"];
-              vaga.email = objeto_retorno[item]["email"];
-              vaga.empresa = objeto_retorno[item]["empresa"];
-              vaga.escolaridade = objeto_retorno[item]["escolaridade"];
-
-              this.vagas.push(vaga);
-            
-          }  
-
-          var vagas2 = new Array<Vaga>();
-          
-  
-
-          console.log(vagas2);
-          this.lista_vagas = vagas2; */
-
-        }, error=>{
-          console.log("error");
-        }
-      )
-    }
-
+  addValue(itens: any){
+    this.lista_vagas = itens;
   }
 
   getValue(id:any){

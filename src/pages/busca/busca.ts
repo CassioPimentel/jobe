@@ -50,8 +50,12 @@ export class BuscaPage {
      console.log(titulo);
      console.log(cidade);
 
-     cidade = cidade.substring(0, cidade.indexOf(','));
-     
+     console.log(cidade.indexOf(','));
+
+     if(cidade.indexOf(',') != -1){
+      cidade = cidade.substring(0, cidade.indexOf(','));
+     } 
+
      this.navCtrl.push(VagasPage, { titulo : titulo, cidade : cidade } );
   }
 

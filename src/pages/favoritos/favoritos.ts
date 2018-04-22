@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
+import { ModalController } from 'ionic-angular';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { FavoritoProvider } from './../../providers/favorito/favorito';
+import { CompartilharVagaPage } from '../compartilhar-vaga/compartilhar-vaga';
 
 @IonicPage()
 @Component({
@@ -14,8 +16,8 @@ export class FavoritosPage {
 
   constructor(public navCtrl: NavController,
               public navParams: NavParams,
-              private favoritoProvider: FavoritoProvider) {
-    this.atualizarFavoritos()              
+              public modalCtrl: ModalController,
+              private favoritoProvider: FavoritoProvider) {             
   }
 
   ionViewDidLoad() {
@@ -32,8 +34,12 @@ export class FavoritosPage {
   }
 
   atualizarFavoritos(){
-    console.log('ENTRA ATUALIZA FAVORITOS');
     this.favoritos = this.favoritoProvider.getAll();
+  }
+
+  CompartilharVaga(item: any){
+    let modal = this.modalCtrl.create(CompartilharVagaPage, { link: item.link });
+    modal.present();
   }
 
 }

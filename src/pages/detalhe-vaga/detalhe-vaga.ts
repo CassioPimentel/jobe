@@ -113,8 +113,8 @@ export class DetalheVagaPage {
     }
   }
 
-  whatsappShare(){
-    this.sharing.shareViaWhatsApp("Message via WhatsApp", null /*Image*/,  "https://pointdeveloper.com/" /* url */)
+  whatsappShare(vaga: any){
+    this.sharing.shareViaWhatsApp("Message via WhatsApp", null, vaga.link)
       .then(()=>{
       },
       ()=>{
@@ -122,8 +122,8 @@ export class DetalheVagaPage {
       })
   }
  
-  twitterShare(){
-    this.sharing.shareViaTwitter("Message via Twitter",null /*Image*/,"https://pointdeveloper.com")
+  twitterShare(vaga: any){
+    this.sharing.shareViaTwitter("Message via Twitter",null, vaga.link)
     .then(()=>{
       },
       ()=>{
@@ -131,12 +131,30 @@ export class DetalheVagaPage {
       })
   }
  
-  facebookShare(){
-    this.sharing.shareViaFacebook("Message via Facebook",null /*Image*/,"https://pointdeveloper.com")
+  facebookShare(vaga: any){
+    this.sharing.shareViaFacebook("Message via Facebook",null, vaga.link)
     .then(()=>{
       },
       ()=>{
          alert("Houve um erro ao abrir o Facebook")
+      })
+  }
+
+  EmailShare(vaga: any){
+    this.sharing.shareViaEmail("Message via Email", null, vaga.link)
+      .then(()=>{
+      },
+      ()=>{
+         alert("Houve um erro ao abrir o Email")
+      })
+  }
+
+  InstagramShare(){
+    this.sharing.shareViaInstagram("Message via Email", null)
+      .then(()=>{
+      },
+      ()=>{
+         alert("Houve um erro ao abrir o Instagram")
       })
   }
 

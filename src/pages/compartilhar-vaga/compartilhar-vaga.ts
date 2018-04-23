@@ -19,7 +19,6 @@ export class CompartilharVagaPage {
   }
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad CompartilharVagaPage');
   }
 
   close(){
@@ -29,30 +28,45 @@ export class CompartilharVagaPage {
   whatsappShare(){
     this.sharing.shareViaWhatsApp("Message via WhatsApp", null /*Image*/,  this.link /* url */)
       .then(()=>{
-        alert("Success");
       },
       ()=>{
-         alert("failed")
+        alert("Erro ao compartilhar")
+      })
+  }
+
+  EmailShare(){
+    this.sharing.shareViaEmail("Message via Email", null /*Image*/,  this.link /* url */)
+      .then(()=>{
+      },
+      ()=>{
+         alert("Erro ao compartilhar")
+      })
+  }
+
+  InstagramShare(){
+    this.sharing.shareViaInstagram("Message via Email", null)
+      .then(()=>{
+      },
+      ()=>{
+         alert("Erro ao compartilhar")
       })
   }
  
   twitterShare(){
     this.sharing.shareViaTwitter("Message via Twitter",null /*Image*/,this.link)
     .then(()=>{
-        alert("Success");
       },
       ()=>{
-         alert("failed")
+        alert("Erro ao compartilhar")
       })
   }
  
   facebookShare(){
     this.sharing.shareViaFacebook("Message via Twitter",null /*Image*/,this.link)
     .then(()=>{
-        alert("Success");
       },
       ()=>{
-         alert("failed")
+        alert("Erro ao compartilhar")
       })
   }
 

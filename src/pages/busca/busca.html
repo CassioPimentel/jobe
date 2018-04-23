@@ -11,14 +11,14 @@
   
   <ion-card>
 
-    <ion-item (click)='getVaga()'>        
+    <ion-item>        
         <ion-label> <ion-icon name="search"></ion-icon> </ion-label>
-        <ion-input clearInput type="text" [(ngModel)]="titulo" placeholder="Profissão" ></ion-input>
+        <ion-input  clearInput type="text" [(ngModel)]="titulo" placeholder="Profissão" ></ion-input>
     </ion-item>
     
-    <ion-item (click)='getCidade()'>        
+    <ion-item>        
         <ion-label> <ion-icon name="pin"></ion-icon> </ion-label>
-        <ion-input clearInput type="text" [(ngModel)]="cidade" placeholder="Cidade"></ion-input>
+        <ion-input (ionFocus)="getCidade()" clearInput type="text" [(ngModel)]="cidade" placeholder="Cidade"></ion-input>
     </ion-item>
     
     <ion-item>

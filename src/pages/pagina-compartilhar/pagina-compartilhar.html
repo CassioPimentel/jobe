@@ -16,16 +16,24 @@
 
 <ion-content>
     <ion-list>
-        <ion-item>
-          <ion-icon name="logo-facebook" item-start (click)='facebookShare()'></ion-icon>
+        <ion-item  (click)='facebookShare()'>
+          <ion-icon name="logo-facebook" item-start></ion-icon>
             Facebook
           </ion-item>
-        <ion-item>
-          <ion-icon name="logo-whatsapp" item-start (click)='whatsappShare()'></ion-icon>
+        <ion-item (click)='whatsappShare()'>
+          <ion-icon name="logo-whatsapp" item-start ></ion-icon>
             Whatsapp
           </ion-item>
-        <ion-item>
-          <ion-icon name="logo-twitter" item-start (click)='twitterShare()'></ion-icon>
+        <ion-item (click)='InstagramShare()'>
+          <ion-icon name="logo-instagram" item-start ></ion-icon>
+            Instagram
+          </ion-item>
+        <ion-item (click)='EmailShare()'>
+          <ion-icon name="mail" item-start ></ion-icon>
+              Email
+          </ion-item>
+        <ion-item (click)='twitterShare()'>
+          <ion-icon name="logo-twitter" item-start ></ion-icon>
             Twitter
           </ion-item>
     </ion-list>

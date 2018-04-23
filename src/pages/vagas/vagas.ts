@@ -29,6 +29,8 @@ export class VagasPage {
   provider: any;
   public loader;
   public vagas = new Array<Vaga>();
+  public refhesher;
+  public isRefheshing: boolean = false;
   
   constructor(public navCtrl: NavController, 
               public navParams: NavParams,
@@ -46,10 +48,10 @@ export class VagasPage {
   }
 
   abreCarregando() {
-  this.loader = this.loadingCtrl.create({
-      content: "Carregando",
-    });
-  this.loader.present();
+    this.loader = this.loadingCtrl.create({
+        content: "Carregando",
+      });
+    this.loader.present();
   }
 
   fechaCarregando(){
@@ -69,7 +71,15 @@ export class VagasPage {
     this.lista_vagas.splice(indexes.to, 0, element);
   }
 
-  ionViewWillEnter(){
+  doRefresh(refresher) {
+    console.log('entra refresh');
+    this.refhesher = refresher;
+    this.isRefheshing = true;
+
+    this.carregarVagas();
+  }
+
+  carregarVagas(){
     this.abreCarregando();
     if(this.titulo != undefined && this.cidade != undefined){
         this.vagaProvider.buscaVagas(this.titulo, this.cidade).subscribe(
@@ -89,8 +99,17 @@ export class VagasPage {
               this.lista_vagas = objeto_retorno;
               this.fechaCarregando();
 
+              if(this.isRefheshing){
+                this.refhesher.complete();
+                this.isRefheshing = false;
+              }   
+
             }, error=>{
               this.fechaCarregando();
+              if(this.isRefheshing){
+                this.refhesher.complete();
+                this.isRefheshing = false;
+              }   
             }
         )  
       }else{
@@ -99,7 +118,7 @@ export class VagasPage {
       var page = this;
 
       var item = this.buscaProvider.get('ultimaVaga');
-
+      console.log('entra else');
       Promise.resolve(item.then()).then(function(value) {
         provider.buscaVagas(value.titulo, value.cidade).subscribe(
           data=>{
@@ -107,17 +126,35 @@ export class VagasPage {
             const objeto_retorno = JSON.parse(response._body);
             page.addValue(objeto_retorno);
             page.fechaCarregando();
+
+            console.log(page.isRefheshing);
+            if(page.isRefheshing){
+              console.log('entrou atualizzar vagas');
+              page.refhesher.complete();
+              page.isRefheshing = false;
+            }   
  
           }, error=>{
             page.fechaCarregando();
+            if(page.isRefheshing){
+              page.refhesher.complete();
+              page.isRefheshing = false;
+            }   
           }
         )
       }, function(value) {
         page.fechaCarregando();
+        if(page.isRefheshing){
+          page.refhesher.complete();
+          page.isRefheshing = false;
+        }   
       });
       
     } 
+  }
 
+  ionViewWillEnter(){
+    this.carregarVagas();
   }
 
   ionViewDidLoad() {

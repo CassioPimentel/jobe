@@ -14,41 +14,57 @@ export class PaginaCompartilharPage {
               private sharing: SocialSharing) {
   }
 
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad PaginaCompartilharPage');
-  }
+  ionViewDidLoad() {}
 
   close(){
     this.navCtrl.pop();
   }
 
   whatsappShare(){
-    this.sharing.shareViaWhatsApp("Message via WhatsApp", null /*Image*/,  "https://pointdeveloper.com/" /* url */)
+    this.sharing.shareViaWhatsApp("Message via WhatsApp", null,  "https://pointdeveloper.com/")
       .then(()=>{
         alert("Success");
       },
       ()=>{
-         alert("failed")
+        alert("Erro ao compartilhar")
       })
   }
  
   twitterShare(){
-    this.sharing.shareViaTwitter("Message via Twitter",null /*Image*/,"https://pointdeveloper.com")
+    this.sharing.shareViaTwitter("Message via Twitter",null ,"https://pointdeveloper.com")
     .then(()=>{
         alert("Success");
       },
       ()=>{
-         alert("failed")
+        alert("Erro ao compartilhar")
       })
   }
  
   facebookShare(){
-    this.sharing.shareViaFacebook("Message via Twitter",null /*Image*/,"https://pointdeveloper.com")
+    this.sharing.shareViaFacebook("Message via Twitter",null,"https://pointdeveloper.com")
     .then(()=>{
         alert("Success");
       },
       ()=>{
-         alert("failed")
+        alert("Erro ao compartilhar")
+      })
+  }
+
+  EmailShare(){
+    this.sharing.shareViaEmail("Message via Email", null, null)
+      .then(()=>{
+      },
+      ()=>{
+         alert("Erro ao compartilhar")
+      })
+  }
+
+  InstagramShare(){
+    this.sharing.shareViaInstagram("Message via Email", null)
+      .then(()=>{
+      },
+      ()=>{
+         alert("Erro ao compartilhar")
       })
   }
 

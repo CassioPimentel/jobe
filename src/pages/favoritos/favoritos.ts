@@ -3,6 +3,7 @@ import { ModalController } from 'ionic-angular';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { FavoritoProvider } from './../../providers/favorito/favorito';
 import { CompartilharVagaPage } from '../compartilhar-vaga/compartilhar-vaga';
+import { DetalheVagaPage } from '../detalhe-vaga/detalhe-vaga';
 
 @IonicPage()
 @Component({
@@ -39,6 +40,11 @@ export class FavoritosPage {
 
   CompartilharVaga(item: any){
     let modal = this.modalCtrl.create(CompartilharVagaPage, { link: item.link });
+    modal.present();
+  }
+
+  detalhe(id: string){
+    let modal = this.modalCtrl.create(DetalheVagaPage, {id: id});
     modal.present();
   }
 

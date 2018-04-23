@@ -21,6 +21,11 @@
 
 
 <ion-content class="cards-bg social-cards">
+
+
+  <ion-refresher (ionRefresh)="doRefresh($event)">
+    <ion-refresher-content></ion-refresher-content>
+  </ion-refresher>
   
   <ion-card *ngIf="lista_vagas.length == 0">
     <h2>Nenhuma vaga encontrada</h2>
@@ -42,7 +47,7 @@
       </button>    
     </ion-col>
     <ion-col >
-        <button ion-button icon-left clear small (click)='salvarFavorito(item)'>
+        <button ion-button icon-left clear small>
             <!-- <ion-icon name="heart"></ion-icon>
              <div> {{ item.salvo != 0 ? 'Salvar' : 'Salvo' }} {{ item.salvo }} </div> -->
         </button>

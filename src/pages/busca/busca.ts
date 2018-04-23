@@ -23,35 +23,17 @@ export class BuscaPage {
     let cidade = navParams.get('cidade');  
     let titulo = navParams.get('titulo');  
                 
-    console.log(cidade);
-    console.log(titulo);
-
-    //if(cidade != undefined){
-      this.cidade = cidade;
-      this.titulo = titulo;  
-    //}
-    
-    //if(titulo != undefined){
-    //  this.titulo = titulo;
-    //  this.cidade = this.cidade;
-    //}
-
+    this.cidade = cidade;
+    this.titulo = titulo;  
   }
   
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad BuscaPage');
-  }
+  ionViewDidLoad() {}
   
   getCidade(){
     this.navCtrl.push(PesquisaCidadePage, { titulo: this.titulo });
   }
   
   buscaVagas(titulo: string, cidade: string){
-     console.log(titulo);
-     console.log(cidade);
-
-     console.log(cidade.indexOf(','));
-
      if(cidade.indexOf(',') != -1){
       cidade = cidade.substring(0, cidade.indexOf(','));
      } 

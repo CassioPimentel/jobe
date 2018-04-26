@@ -12,4 +12,5 @@ export class Vaga {
     salario: String;
     escolaridade: String;
     salvo: number;
+    dias: string;
 }

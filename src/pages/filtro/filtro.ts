@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { VagasPage } from '../vagas/vagas';
 
 @IonicPage()
 @Component({
@@ -19,8 +20,9 @@ export class FiltroPage {
     this.navCtrl.pop();
   }
 
-  filtrar(ordenacao:any, experiencia:any){
-    
+  filtrar(ordenacao: any){
+    console.log(ordenacao);
+    this.navCtrl.push(VagasPage, { ordenecao: ordenacao });
   }
 
 }

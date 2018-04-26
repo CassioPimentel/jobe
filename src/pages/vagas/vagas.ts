@@ -87,6 +87,30 @@ export class VagasPage {
               const response = (data as any);
               const objeto_retorno = JSON.parse(response._body);
 
+              var lista_vaga = new Array<any>();
+
+              objeto_retorno.forEach(element => {
+                var vaga: Vaga;
+                vaga = element;
+  
+                var today = new Date();
+                var data = new Date(element.data);
+  
+                var diaInicial = data.getDate();
+                var mesInicial = data.getMonth();
+                
+                var diaFinal = today.getDate();
+                var mesFinal = today.getMonth();
+                
+                if((mesFinal - mesInicial) > 0 ){
+                  vaga.dias = '1 mês';
+                }else if( (diaFinal - diaInicial) > 7 ){
+                  vaga.dias = '1 sem';
+                }
+  
+                lista_vaga.push(vaga);
+              });
+
               if(objeto_retorno.length > 0){
                 console.log(this.titulo);
                 console.log(this.cidade);
@@ -96,7 +120,7 @@ export class VagasPage {
                 this.buscaProvider.save(item);
               }
 
-              this.lista_vagas = objeto_retorno;
+              this.lista_vagas = lista_vaga;
               this.fechaCarregando();
 
               if(this.isRefheshing){
@@ -114,42 +138,76 @@ export class VagasPage {
         )  
       }else{
 
-      var provider = this.provider;
-      var page = this;
+        var provider = this.provider;
+        var page = this;
 
-      var item = this.buscaProvider.get('ultimaVaga');
-      console.log('entra else');
-      Promise.resolve(item.then()).then(function(value) {
-        provider.buscaVagas(value.titulo, value.cidade).subscribe(
-          data=>{
-            const response = (data as any);
-            const objeto_retorno = JSON.parse(response._body);
-            page.addValue(objeto_retorno);
-            page.fechaCarregando();
-
-            console.log(page.isRefheshing);
-            if(page.isRefheshing){
-              console.log('entrou atualizzar vagas');
-              page.refhesher.complete();
-              page.isRefheshing = false;
-            }   
- 
-          }, error=>{
-            page.fechaCarregando();
-            if(page.isRefheshing){
-              page.refhesher.complete();
-              page.isRefheshing = false;
-            }   
-          }
-        )
-      }, function(value) {
-        page.fechaCarregando();
-        if(page.isRefheshing){
-          page.refhesher.complete();
-          page.isRefheshing = false;
-        }   
-      });
+        var item = this.buscaProvider.get('ultimaVaga');
+        
+        item.then(function(result) {
+                
+          if(result != null){
+            Promise.resolve(item.then()).then(function(value) {
+              provider.buscaVagas(value.titulo, value.cidade).subscribe(
+                data=>{
+                  const response = (data as any);
+                  const objeto_retorno = JSON.parse(response._body);
+    
+                  var lista_vaga = new Array<any>();
+    
+                  objeto_retorno.forEach(element => {
+                    var vaga: Vaga;
+                    vaga = element;
+    
+                    var today = new Date;
+                    var data = new Date(element.data);
+    
+                    var diaInicial = data.getDate();
+                    var mesInicial = data.getMonth();
+                    
+                    var diaFinal = today.getDate();
+                    var mesFinal = today.getMonth();
+    
+                    console.log(mesFinal - mesInicial);
+                    
+                    if((mesFinal - mesInicial) > 0 ){
+                      vaga.dias = '1 mês';
+                    }else if( (diaFinal - diaInicial) > 7 ){
+                      vaga.dias = '1 sem';
+                    }
+    
+                    lista_vaga.push(vaga);
+                  });
+    
+                  page.addValue(lista_vaga);
+                  page.fechaCarregando();
+    
+                  console.log(page.isRefheshing);
+                  if(page.isRefheshing){
+                    console.log('entrou atualizzar vagas');
+                    page.refhesher.complete();
+                    page.isRefheshing = false;
+                  }   
       
+                }, error=>{
+                  page.fechaCarregando();
+                  if(page.isRefheshing){
+                    page.refhesher.complete();
+                    page.isRefheshing = false;
+                  }   
+                }
+              )
+            }, function(value) {
+              page.fechaCarregando();
+              if(page.isRefheshing){
+                page.refhesher.complete();
+                page.isRefheshing = false;
+              }   
+            });
+          }else{
+            page.fechaCarregando();
+          }
+        }); 
+
     } 
   }
 

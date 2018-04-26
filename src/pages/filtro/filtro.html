@@ -20,19 +20,12 @@
       <ion-item>
           <ion-label>Ordernar por</ion-label>
           <ion-select [(ngModel)]="ordenacao">
-            <ion-option value="f">Data (mais recente primeiro)</ion-option>
-            <ion-option value="m">Data (mais antigo primeiro)</ion-option>
-          </ion-select>
-      </ion-item>
-
-      <ion-item>
-          <ion-label>Experência</ion-label>
-          <ion-select [(ngModel)]="experiencia">
-            <ion-option value="f">Qualquer</ion-option>
+            <ion-option value="novo">Data (mais recente primeiro)</ion-option>
+            <ion-option value="antigo">Data (mais antigo primeiro)</ion-option>
           </ion-select>
       </ion-item>
   </ion-list>
 
-  <button ion-button full (click)="filtrar(ordenacao, experiencia)">Filtrar</button>
+  <button ion-button full (click)="filtrar(ordenacao)">Filtrar</button>
 
 </ion-content>

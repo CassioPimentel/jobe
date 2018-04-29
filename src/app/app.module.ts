@@ -6,7 +6,6 @@ import { HttpModule } from '@angular/http';
 import { IonicStorageModule } from '@ionic/storage';
 import { SocialSharing } from '@ionic-native/social-sharing';
 
-import { HomePage } from '../pages/home/home';
 import { TabsPage } from '../pages/tabs/tabs';
 import { VagasPage } from '../pages/vagas/vagas';
 import { DetalheVagaPage } from '../pages/detalhe-vaga/detalhe-vaga';
@@ -24,11 +23,13 @@ import { FavoritoProvider } from '../providers/favorito/favorito';
 import { PesquisaVagaPage } from '../pages/pesquisa-vaga/pesquisa-vaga';
 import { CompartilharVagaPage } from '../pages/compartilhar-vaga/compartilhar-vaga';
 import { BuscaProvider } from '../providers/busca/busca';
+import { SQLite } from '@ionic-native/sqlite'
+import { DatabaseProvider } from '../providers/database/database';
+import { DatabaseFavoritoProvider } from '../providers/database-favorito/database-favorito';
 
 @NgModule({
   declarations: [
     MyApp,
-    HomePage,
     TabsPage,
     VagasPage,
     DetalheVagaPage,
@@ -43,13 +44,15 @@ import { BuscaProvider } from '../providers/busca/busca';
   imports: [
     BrowserModule,
     IonicModule.forRoot(MyApp),
-    IonicStorageModule.forRoot(),
+    IonicStorageModule.forRoot({
+      name: '__mydb',
+         driverOrder: ['indexeddb', 'sqlite', 'websql']
+    }),
     HttpModule
   ],
   bootstrap: [IonicApp],
   entryComponents: [
     MyApp,
-    HomePage,
     TabsPage,
     VagasPage,
     DetalheVagaPage,
@@ -69,7 +72,10 @@ import { BuscaProvider } from '../providers/busca/busca';
     CidadeProvider,
     FavoritoProvider,
     SocialSharing,
-    BuscaProvider
+    BuscaProvider,
+    SQLite,
+    DatabaseProvider,
+    DatabaseFavoritoProvider
   ]
 })
 export class AppModule {}

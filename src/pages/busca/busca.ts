@@ -26,9 +26,7 @@ export class BuscaPage {
     this.cidade = cidade;
     this.titulo = titulo;  
   }
-  
-  ionViewDidLoad() {}
-  
+
   getCidade(){
     this.navCtrl.push(PesquisaCidadePage, { titulo: this.titulo });
   }
@@ -39,6 +37,7 @@ export class BuscaPage {
      } 
 
      this.navCtrl.push(VagasPage, { titulo : titulo, cidade : cidade } );
+     this.navCtrl.parent.select(1);
   }
 
   getVaga(){

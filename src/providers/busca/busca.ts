@@ -14,14 +14,9 @@ export class BuscaProvider {
   }
 
   save(item: any) {
-    this.get('ultimaVaga').then(data => {
-      if(data == null){
-        this.insert(item);
-      }else{
-        this.remove('ultimaVaga');
-        this.insert(item);
-      }
-    });
+    var result;
+    return this.get('ultimaVaga');
+    
   }
 
   remove(id: string){

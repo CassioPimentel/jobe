@@ -11,13 +11,15 @@ import { reorderArray } from 'ionic-angular';
 import { Vaga } from './vaga';
 import { itemBusca } from './itemBusca';
 import { CompartilharVagaPage } from '../compartilhar-vaga/compartilhar-vaga';
-import { LoadingController } from 'ionic-angular';
+import { LoadingController, ToastController } from 'ionic-angular';
 
 @IonicPage()
 @Component({
   selector: 'page-vagas',
   templateUrl: 'vagas.html',
-  providers: [ VagaProvider, FavoritoProvider, BuscaProvider ]
+  providers: [ VagaProvider, 
+               FavoritoProvider, 
+               BuscaProvider ]
 })
 export class VagasPage {
   
@@ -38,13 +40,13 @@ export class VagasPage {
               private buscaProvider: BuscaProvider,
               private favoritoProvider: FavoritoProvider,
               public modalCtrl: ModalController,
-              public loadingCtrl: LoadingController
+              public loadingCtrl: LoadingController,
+              private toast: ToastController
               ) {
                 
     this.titulo = this.navParams.get('titulo');
     this.cidade = this.navParams.get('cidade');
     this.provider = this.vagaProvider;
-
   }
 
   abreCarregando() {
@@ -117,7 +119,33 @@ export class VagasPage {
 
                 var item = {titulo: this.titulo, cidade: this.cidade};
 
-                this.buscaProvider.save(item);
+                this.buscaProvider.get('ultimaVaga').then(data => {
+                  if(data == null){
+                    this.buscaProvider.insert(item).then(() => {
+                    })
+                    .catch((value) => {
+                      this.toast.create({ message: 'Erro ao salvar ' + value, duration: 3000, position: 'botton' }).present();
+                    });
+                  }else{
+                    this.buscaProvider.remove('ultimaVaga');
+                    this.buscaProvider.insert(item).then(() => {
+                    })
+                    .catch((value) => {
+                      this.toast.create({ message: 'Erro ao salvar ' + value, duration: 3000, position: 'botton' }).present();
+                    });
+                  }
+                });
+
+
+
+                
+                //  this.toast.create({ message: 'Contato salvo.', duration: 3000, position: 'botton' }).present();
+                //  this.navCtrl.pop();
+
+                //  this.toast.create({ message: 'Erro ao salvar o contato.', duration: 3000, position: 'botton' }).present();
+
+
+
               }
 
               this.lista_vagas = lista_vaga;
@@ -142,7 +170,7 @@ export class VagasPage {
         var page = this;
 
         var item = this.buscaProvider.get('ultimaVaga');
-        
+        console.log(item);
         item.then(function(result) {
                 
           if(result != null){
@@ -211,12 +239,8 @@ export class VagasPage {
     } 
   }
 
-  ionViewWillEnter(){
+  ionViewDidEnter(){
     this.carregarVagas();
-  }
-
-  ionViewDidLoad() {
-   
   }
 
   addValue(itens: any){

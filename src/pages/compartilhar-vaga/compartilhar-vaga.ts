@@ -26,7 +26,7 @@ export class CompartilharVagaPage {
   }
 
   whatsappShare(){
-    this.sharing.shareViaWhatsApp("Message via WhatsApp", null /*Image*/,  this.link /* url */)
+    this.sharing.shareViaWhatsApp("Jobe, aplicativo de vagas gratuitas", null,  this.link)
       .then(()=>{
       },
       ()=>{
@@ -35,7 +35,7 @@ export class CompartilharVagaPage {
   }
 
   EmailShare(){
-    this.sharing.shareViaEmail("Message via Email", null /*Image*/,  this.link /* url */)
+    this.sharing.shareViaEmail("Jobe, aplicativo de vagas gratuitas", null,  this.link)
       .then(()=>{
       },
       ()=>{
@@ -44,7 +44,7 @@ export class CompartilharVagaPage {
   }
 
   InstagramShare(){
-    this.sharing.shareViaInstagram("Message via Email", null)
+    this.sharing.shareViaInstagram("Jobe, aplicativo de vagas gratuitas", null)
       .then(()=>{
       },
       ()=>{
@@ -53,7 +53,7 @@ export class CompartilharVagaPage {
   }
  
   twitterShare(){
-    this.sharing.shareViaTwitter("Message via Twitter",null /*Image*/,this.link)
+    this.sharing.shareViaTwitter("Jobe, aplicativo de vagas gratuitas" ,null, this.link)
     .then(()=>{
       },
       ()=>{
@@ -62,7 +62,7 @@ export class CompartilharVagaPage {
   }
  
   facebookShare(){
-    this.sharing.shareViaFacebook("Message via Twitter",null /*Image*/,this.link)
+    this.sharing.shareViaFacebook("Jobe, aplicativo de vagas gratuitasr",null ,this.link)
     .then(()=>{
       },
       ()=>{

@@ -5,12 +5,10 @@ import { Injectable } from '@angular/core';
 @Injectable()
 export class VagaProvider {
 
-  
-
   constructor(private http: Http) {
-    console.log('Hello VagaProvider Provider');
+    
   }
-  
+
   getVagas(){
     let headers = new Headers();
     headers.append('Content-Type', 'application/json');

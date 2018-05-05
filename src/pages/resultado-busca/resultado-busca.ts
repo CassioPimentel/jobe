@@ -7,21 +7,21 @@ import { DetalheVagaPage } from '../detalhe-vaga/detalhe-vaga';
 import { FiltroPage } from '../filtro/filtro';
 import { PaginaCompartilharPage } from '../pagina-compartilhar/pagina-compartilhar';
 import { reorderArray } from 'ionic-angular';
-import { Vaga } from './vaga';
-import { itemBusca } from './itemBusca';
+import { Vaga } from '../vagas/vaga';
+import { itemBusca } from '../vagas/itemBusca';
 import { CompartilharVagaPage } from '../compartilhar-vaga/compartilhar-vaga';
 import { LoadingController, ToastController } from 'ionic-angular';
 
 @IonicPage()
 @Component({
-  selector: 'page-vagas',
-  templateUrl: 'vagas.html',
+  selector: 'page-resultado-busca',
+  templateUrl: 'resultado-busca.html',
   providers: [ VagaProvider, 
                FavoritoProvider, 
                BuscaProvider ]
 })
-export class VagasPage {
-  
+export class ResultadoBuscaPage {
+
   public lista_vagas = new Array<any>();
   titulo: string;
   cidade: string;
@@ -32,7 +32,7 @@ export class VagasPage {
   public vagas = new Array<Vaga>();
   public refhesher;
   public isRefheshing: boolean = false;
-  
+
   constructor(public navCtrl: NavController, 
               public navParams: NavParams,
               private vagaProvider: VagaProvider,
@@ -40,12 +40,15 @@ export class VagasPage {
               private favoritoProvider: FavoritoProvider,
               public modalCtrl: ModalController,
               public loadingCtrl: LoadingController,
-              private toast: ToastController
-              ) {
-                
+              private toast: ToastController) {
+
     this.titulo = this.navParams.get('titulo');
     this.cidade = this.navParams.get('cidade');
     this.provider = this.vagaProvider;
+  }
+
+  close(){
+    this.navCtrl.pop();
   }
 
   abreCarregando() {

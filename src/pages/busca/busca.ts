@@ -1,9 +1,11 @@
 import { Component } from '@angular/core';
-import { ModalController } from 'ionic-angular';
+import { ModalController, ToastController } from 'ionic-angular';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { PesquisaCidadePage } from '../pesquisa-cidade/pesquisa-cidade';
 import { PesquisaVagaPage } from '../pesquisa-vaga/pesquisa-vaga';
 import { VagasPage } from '../vagas/vagas';
+import { ResultadoBuscaPage } from '../resultado-busca/resultado-busca';
+import { Network } from '@ionic-native/network';
 
 @IonicPage()
 @Component({
@@ -18,8 +20,9 @@ export class BuscaPage {
 
   constructor(public navCtrl: NavController, 
               public navParams: NavParams,
-              public modalCtrl: ModalController){
-                
+              public modalCtrl: ModalController,
+              private toast: ToastController){
+
     let cidade = navParams.get('cidade');  
     let titulo = navParams.get('titulo');  
                 
@@ -32,16 +35,35 @@ export class BuscaPage {
   }
   
   buscaVagas(titulo: string, cidade: string){
+    console.log(titulo);
+    if(titulo == undefined){
+      this.toast.create({ message: 'Digite a vaga', duration: 3000, position: 'botton' }).present();
+      return;
+    }
+
+    if(cidade == undefined){
+      this.toast.create({ message: 'Digite a cidade', duration: 3000, position: 'botton' }).present();
+      return;
+    }
+
      if(cidade.indexOf(',') != -1){
       cidade = cidade.substring(0, cidade.indexOf(','));
-     } 
+     }     
 
-     this.navCtrl.push(VagasPage, { titulo : titulo, cidade : cidade } );
-     this.navCtrl.parent.select(1);
+     this.navCtrl.push(ResultadoBuscaPage, { titulo : titulo, cidade : cidade });
+     //modal.present();
+
+     //this.navCtrl.setRoot()
+     //this.navCtrl.push(VagasPage, { titulo : titulo, cidade : cidade }).then(() => {
+     // let index = 1;
+     // this.navCtrl.parent.select(index);
+    //});
+
   }
 
   getVaga(){
     this.navCtrl.push(PesquisaVagaPage, { cidade: this.cidade });
+
   }
 
 }

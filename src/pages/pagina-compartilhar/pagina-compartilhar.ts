@@ -21,7 +21,7 @@ export class PaginaCompartilharPage {
   }
 
   whatsappShare(){
-    this.sharing.shareViaWhatsApp("Message via WhatsApp", null,  "https://pointdeveloper.com/")
+    this.sharing.shareViaWhatsApp("Jobe, aplicativo de vagas gratuitas", null,  "https://play.google.com/store/apps/details?id=io.jobe")
       .then(()=>{
         alert("Success");
       },
@@ -31,9 +31,8 @@ export class PaginaCompartilharPage {
   }
  
   twitterShare(){
-    this.sharing.shareViaTwitter("Message via Twitter",null ,"https://pointdeveloper.com")
+    this.sharing.shareViaTwitter("Jobe, aplicativo de vagas gratuitas",null ,"https://play.google.com/store/apps/details?id=io.jobe")
     .then(()=>{
-        alert("Success");
       },
       ()=>{
         alert("Erro ao compartilhar")
@@ -41,9 +40,8 @@ export class PaginaCompartilharPage {
   }
  
   facebookShare(){
-    this.sharing.shareViaFacebook("Message via Twitter",null,"https://pointdeveloper.com")
+    this.sharing.shareViaFacebook("Jobe, aplicativo de vagas gratuitas",null,"https://play.google.com/store/apps/details?id=io.jobe")
     .then(()=>{
-        alert("Success");
       },
       ()=>{
         alert("Erro ao compartilhar")
@@ -51,7 +49,7 @@ export class PaginaCompartilharPage {
   }
 
   EmailShare(){
-    this.sharing.shareViaEmail("Message via Email", null, null)
+    this.sharing.shareViaEmail("Jobe, aplicativo de vagas gratuitas", "https://play.google.com/store/apps/details?id=io.jobe", null)
       .then(()=>{
       },
       ()=>{
@@ -60,7 +58,7 @@ export class PaginaCompartilharPage {
   }
 
   InstagramShare(){
-    this.sharing.shareViaInstagram("Message via Email", null)
+    this.sharing.shareViaInstagram("Jobe, aplicativo de vagas gratuitas", null)
       .then(()=>{
       },
       ()=>{

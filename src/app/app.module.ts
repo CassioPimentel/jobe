@@ -5,6 +5,7 @@ import { MyApp } from './app.component';
 import { HttpModule } from '@angular/http';
 import { IonicStorageModule } from '@ionic/storage';
 import { SocialSharing } from '@ionic-native/social-sharing';
+import { Network } from '@ionic-native/network';
 
 import { TabsPage } from '../pages/tabs/tabs';
 import { VagasPage } from '../pages/vagas/vagas';
@@ -26,6 +27,7 @@ import { BuscaProvider } from '../providers/busca/busca';
 import { SQLite } from '@ionic-native/sqlite'
 import { DatabaseProvider } from '../providers/database/database';
 import { DatabaseFavoritoProvider } from '../providers/database-favorito/database-favorito';
+import { ResultadoBuscaPage } from '../pages/resultado-busca/resultado-busca';
 
 @NgModule({
   declarations: [
@@ -39,7 +41,8 @@ import { DatabaseFavoritoProvider } from '../providers/database-favorito/databas
     PesquisaVagaPage,
     FavoritosPage,
     PaginaCompartilharPage,
-    CompartilharVagaPage
+    CompartilharVagaPage,
+    ResultadoBuscaPage
   ],
   imports: [
     BrowserModule,
@@ -62,7 +65,8 @@ import { DatabaseFavoritoProvider } from '../providers/database-favorito/databas
     PesquisaVagaPage,
     FavoritosPage,
     PaginaCompartilharPage,
-    CompartilharVagaPage
+    CompartilharVagaPage,
+    ResultadoBuscaPage
   ],
   providers: [
     StatusBar,
@@ -75,7 +79,8 @@ import { DatabaseFavoritoProvider } from '../providers/database-favorito/databas
     BuscaProvider,
     SQLite,
     DatabaseProvider,
-    DatabaseFavoritoProvider
+    DatabaseFavoritoProvider,
+    Network
   ]
 })
 export class AppModule {}

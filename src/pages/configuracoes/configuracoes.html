@@ -1,0 +1,31 @@
+<ion-header>
+
+  <ion-toolbar color="primary">
+
+    <ion-buttons left>
+      <button ion-button icon-only (click)='close()'>
+        <ion-icon name="arrow-back"></ion-icon>
+      </button>
+    </ion-buttons>
+
+    <ion-title text-center>Preferências</ion-title>
+
+  </ion-toolbar>
+  
+</ion-header>
+
+<ion-content>
+  
+  <ion-list>
+    <ion-list-header>
+      Dê sua nota ao App
+    </ion-list-header>
+    <ion-item (click)='abrirAplicativo()' text-wrap>Dê sua nota ao nosso app, e nos ajude
+                                                    a ajudar mais pessoas</ion-item>
+    <ion-list-header>
+      Versão
+    </ion-list-header>
+    <ion-item>{{ version }} 1.2</ion-item>
+  </ion-list>
+
+</ion-content>

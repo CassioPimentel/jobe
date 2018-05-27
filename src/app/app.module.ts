@@ -1,3 +1,5 @@
+import { ConcursosPage } from './../pages/concursos/concursos';
+import { ConfiguracoesPage } from './../pages/configuracoes/configuracoes';
 import { NgModule, ErrorHandler } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { IonicApp, IonicModule, IonicErrorHandler } from 'ionic-angular';
@@ -6,6 +8,8 @@ import { HttpModule } from '@angular/http';
 import { IonicStorageModule } from '@ionic/storage';
 import { SocialSharing } from '@ionic-native/social-sharing';
 import { Network } from '@ionic-native/network';
+import { AppVersion } from '@ionic-native/app-version';
+import { Market } from '@ionic-native/market';
 
 import { TabsPage } from '../pages/tabs/tabs';
 import { VagasPage } from '../pages/vagas/vagas';
@@ -28,6 +32,8 @@ import { SQLite } from '@ionic-native/sqlite'
 import { DatabaseProvider } from '../providers/database/database';
 import { DatabaseFavoritoProvider } from '../providers/database-favorito/database-favorito';
 import { ResultadoBuscaPage } from '../pages/resultado-busca/resultado-busca';
+import { RssConcursosProvider } from '../providers/rss-concursos/rss-concursos';
+import { AdMobFree } from '@ionic-native/admob-free';
 
 @NgModule({
   declarations: [
@@ -42,7 +48,9 @@ import { ResultadoBuscaPage } from '../pages/resultado-busca/resultado-busca';
     FavoritosPage,
     PaginaCompartilharPage,
     CompartilharVagaPage,
-    ResultadoBuscaPage
+    ResultadoBuscaPage,
+    ConfiguracoesPage,
+    ConcursosPage
   ],
   imports: [
     BrowserModule,
@@ -66,7 +74,9 @@ import { ResultadoBuscaPage } from '../pages/resultado-busca/resultado-busca';
     FavoritosPage,
     PaginaCompartilharPage,
     CompartilharVagaPage,
-    ResultadoBuscaPage
+    ResultadoBuscaPage,
+    ConfiguracoesPage,
+    ConcursosPage
   ],
   providers: [
     StatusBar,
@@ -80,7 +90,11 @@ import { ResultadoBuscaPage } from '../pages/resultado-busca/resultado-busca';
     SQLite,
     DatabaseProvider,
     DatabaseFavoritoProvider,
-    Network
+    Network,
+    AppVersion,
+    Market,
+    RssConcursosProvider,
+    AdMobFree
   ]
 })
 export class AppModule {}

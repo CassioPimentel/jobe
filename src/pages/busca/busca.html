@@ -1,11 +1,18 @@
 <ion-header>
 
   <ion-toolbar color="primary">
-    <ion-title text-center>JOBE</ion-title>
+
+    <ion-buttons left>
+      <button ion-button icon-only (click)='Configuracoes()'>
+        <ion-icon name="menu"></ion-icon>
+      </button>
+    </ion-buttons>
+
+    <ion-title text-center>Jobe</ion-title>
+
   </ion-toolbar>
-
+  
 </ion-header>
-
 
 <ion-content>
   
@@ -22,7 +29,7 @@
     </ion-item>
     
     <ion-item>
-        <button ion-button full (click)='buscaVagas(titulo, cidade)'>Buscar</button>
+        <button ion-button full large round (click)='buscaVagas(titulo, cidade)'>Buscar</button>
     </ion-item>
   
   </ion-card>

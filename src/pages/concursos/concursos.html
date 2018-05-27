@@ -1,0 +1,18 @@
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>Concursos</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+    <ion-spinner id="feed-spinner"></ion-spinner>
+    <ion-list>
+      <ion-item *ngFor="let item of rss" (click)='clickItem(item.link)'>
+        <div>{{item.title}}</div><br>
+        <p [innerHtml]="item.description"></p>
+      </ion-item>
+    </ion-list>
+</ion-content>

@@ -6,6 +6,7 @@ import { PesquisaVagaPage } from '../pesquisa-vaga/pesquisa-vaga';
 import { VagasPage } from '../vagas/vagas';
 import { ResultadoBuscaPage } from '../resultado-busca/resultado-busca';
 import { Network } from '@ionic-native/network';
+import { ConfiguracoesPage } from '../configuracoes/configuracoes';
 
 @IonicPage()
 @Component({
@@ -51,19 +52,14 @@ export class BuscaPage {
      }     
 
      this.navCtrl.push(ResultadoBuscaPage, { titulo : titulo, cidade : cidade });
-     //modal.present();
-
-     //this.navCtrl.setRoot()
-     //this.navCtrl.push(VagasPage, { titulo : titulo, cidade : cidade }).then(() => {
-     // let index = 1;
-     // this.navCtrl.parent.select(index);
-    //});
-
   }
 
   getVaga(){
     this.navCtrl.push(PesquisaVagaPage, { cidade: this.cidade });
+  }
 
+  Configuracoes(){
+    this.navCtrl.push(ConfiguracoesPage);
   }
 
 }
